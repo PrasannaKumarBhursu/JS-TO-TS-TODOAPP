@@ -10,7 +10,7 @@ const TodoList = () => {
 
     useEffect(() => {
         const getTodos = async () => {
-            const response = await fetch('http://localhost:3000/todo/todos', {
+            const response = await fetch('http://localhost:3004/todo/todos', {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
             });
             // Todo: Create a type for the response that you get back from the server
@@ -21,7 +21,7 @@ const TodoList = () => {
     }, [authState.token]);
 
     const addTodo = async () => {
-        const response = await fetch('http://localhost:3000/todo/todos', {
+        const response = await fetch('http://localhost:3004/todo/todos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem("token")}` },
             body: JSON.stringify({ title, description })
@@ -31,7 +31,7 @@ const TodoList = () => {
     };
 
     const markDone = async (id) => {
-        const response = await fetch(`http://localhost:3000/todo/todos/${id}/done`, {
+        const response = await fetch(`http://localhost:3004/todo/todos/${id}/done`, {
             method: 'PATCH',
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         });
