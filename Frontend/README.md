@@ -4,11 +4,11 @@ Move this JS project to typescript.
  - It's harder to move a react project to TS, although totally possible with the naive approach of moving files from jsx => tsx, and then fixing all the errors.
  - It's easier to re-bootstrap the initial configuration using vite, and then move the files over.
    - This is because the initial configuration is a lot of work, and it's easier to just re-bootstrap it.
- - Go one folder below this folder (go to week-7)
+ - Go one folder below this folder
  - Run  npm create vite@latest
     - Select react
     - Select typescript
-    - Name the new folder `assignment-2-solution`
+    - Name the new folder `Ts-Frontend`
     - Notice how the tsconfig.json has a bunch of things we haven't seen before. This is why bootstraping the new app is much easier than incrementally creating a new tsconfig.json.
  - Bring dependencies to the new project - 
    - npm install recoil
