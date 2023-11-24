@@ -1,21 +1,17 @@
 import jwt from "jsonwebtoken";
 import express from 'express';
+import cors from "cors";
 import { authenticateJwt, SECRET } from "../middleware/";
 import { User } from "../db";
 const router = express.Router();
 
-import { z } from "zod";
-export const signupInput = z.object({
-  username: z.string(),
-  password: z.string()
-})
-
-
+import { signupInput } from "@prasannakumarbhursu/common";
 router.post('/signup', async (req, res) => {
 
 
   let parsedInput = signupInput.safeParse(req.body)
   if (!parsedInput.success) {
+    7
     return res.status(403).json({
       msg: parsedInput.error
     });
@@ -35,7 +31,17 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+
+  let parsedInput = signupInput.safeParse(req.body)
+  if (!parsedInput.success) {
+    return res.status(403).json({
+      msg: parsedInput.error
+    });
+  }
+  cors
+  const username = parsedInput.data.username
+  const password = parsedInput.data.password
+
   const user = await User.findOne({ username, password });
   if (user) {
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: '1h' });
