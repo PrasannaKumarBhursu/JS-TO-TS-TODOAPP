@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { SignupParams } from '@prasannakumarbhursu/common';
+
 
 
 const Signup = () => {
@@ -8,10 +10,11 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleSignup = async () => {
+        const signUpBody: SignupParams = { username, password }
         const response = await fetch('http://localhost:3004/auth/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify(signUpBody)
         });
         // Todo: Create a type for the response that you get back from the server
         const data = await response.json();
